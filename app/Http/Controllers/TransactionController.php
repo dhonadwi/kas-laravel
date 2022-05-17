@@ -35,12 +35,31 @@ class TransactionController extends Controller
        ]);
     }
 
+    public function create_expense()
+    {
+        //  $current_date = Carbon::now()->toDateTimeString(); 
+
+       return view('pages.transaction-expense',[
+           'title' => 'transaction',
+       ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function store_expense(Request $request)
+    {
+        $data=$request->all();
+        $data['date_transaction'] = Carbon::now()->toDateTimeString();
+        return $data;
+        // Transaction::create($data);
+
+        // return redirect()->route('history');
+    }
+
     public function store(Request $request)
     {
         $data=$request->all();
