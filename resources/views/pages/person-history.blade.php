@@ -23,43 +23,46 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTablePerson" width="100%" cellspacing="0">
-                    <thead>
+                <table class="table" width="100%" cellspacing="0">
+                    <tbody>
                         <tr>
                             <th>Nama Lengkap</th>
-                            <th>Cluster</th>
-                            <th>No Rumah</th>
-                            <th>Transaksi</th>
+                            <td>{{ $person->name }}</td>
                         </tr>
-                    </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ $person->name }}</td>
-                        <td>{{ $person->cluster->name }}</td>
-                        <td>{{ $person->no_rumah }}</td>
+                        <tr>
+                            <th>Cluster</th>
+                            <td>{{ $person->cluster->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>No Rumah</th>
+                            <td>{{ $person->no_rumah }}</td>
+                        </tr>
+                        <tr>
+
+                        </tr>
+                        <th>Transaksi</th>
                         <td>
-                          <table class="table table-bordered">
-                            <thead>
-                              <th>Tanggal</th>
-                              <th>Nominal</th>
-                              <th>Keterangan</th>
-                            </thead>
-                            <tbody>
-                              @foreach ($person->transaction as $t)
-                              <tr>
-                                <td>{{ $t->date_transaction}}</td>
-                                <td>@currency($t->nominal)</td>
-                                <td>{{ $t->description}}</td>
-                              </tr>
-                                @endforeach
-                            </tbody>
+                            <table class="table table-bordered" id="dataTablePerson">
+                                <thead>
+                                <th>Tanggal</th>
+                                <th>Nominal</th>
+                                <th>Keterangan</th>
+                                </thead>
+                                <tbody>
+                                @foreach ($person->transaction as $t)
+                                <tr>
+                                    <td>{{ $t->date_transaction}}</td>
+                                    <td>@currency($t->nominal)</td>
+                                    <td>{{ $t->description}}</td>
+                                </tr>
+                                    @endforeach
+                                </tbody>
                           </table>
-                          </ul>
                         </td>
-                    </tr>
-                </tbody>
+                    </tbody>
                 </table>
             </div>
+            <a class="btn btn-success" href="{{ route('person-transaction',$person->id) }}">Transaksi</a>
             <a href="{{ route('person') }}" class="btn btn-primary">Kembali</a>
         </div>
     </div> 
