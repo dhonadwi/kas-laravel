@@ -48,7 +48,7 @@
                               @foreach ($person->transaction as $t)
                               <tr>
                                 <td>{{ $t->date_transaction}}</td>
-                                <td>{{ $t->nominal}}</td>
+                                <td>@currency($t->nominal)</td>
                                 <td>{{ $t->description}}</td>
                               </tr>
                                 @endforeach

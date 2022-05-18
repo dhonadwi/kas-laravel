@@ -17,11 +17,23 @@
             </ul>
         </div>
     @endif
-{{-- <a href="{{ route('person-add') }}" class="btn btn-success">Tambah</a> --}}
-    <div class="card shadow mb-4 mt-2">
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Pemasukan</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Pengeluaran</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-profile-tab"  href="#" role="tab" aria-controls="pills-profile" aria-selected="false">Saldo : @currency($saldo) </a>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+      <div class="card shadow mb-4 mt-2">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Transaksi</h6>
-            <h5>Total : {{ $total }}</h5>
+            <h5>Total : @currency($total)</h5>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -39,7 +51,7 @@
                       <tr>
                         <td>{{ $h->person->name }}</td>
                         <td>{{ $h->date_transaction }}</td>
-                        <td>{{ $h->nominal }}</td>
+                        <td>@currency($h->nominal)</td>
                         <td>{{ $h->description }}</td>
                       </tr>            
                    @endforeach                   
@@ -47,7 +59,40 @@
                 </table>
             </div>
         </div>
-    </div> 
+    </div>
+  </div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="card shadow mb-4 mt-2">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Data Pengeluaran</h6>
+            <h5>Total : @currency($total_expense)</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTableExpense" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Tanggal Bayar</th>
+                            <th>Nominal</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </thead>
+                <tbody>
+                   @foreach ($expense as $e)
+                      <tr>
+                        <td>{{ $e->date_transaction }}</td>
+                        <td>@currency($e->nominal)</td>
+                        <td>{{ $e->description }}</td>
+                      </tr>            
+                   @endforeach                   
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+     
     
     
 </div>
@@ -59,6 +104,11 @@
     <script>
         $(document).ready(function () {
         $("#dataTableHistory").DataTable({
+        ordering: true,
+    });
+});
+ $(document).ready(function () {
+        $("#dataTableExpense").DataTable({
         ordering: true,
     });
 });

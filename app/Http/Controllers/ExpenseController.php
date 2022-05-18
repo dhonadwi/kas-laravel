@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Person;
-use App\Models\Transaction;
+use App\Models\Expense;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class TransactionController extends Controller
+class ExpenseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-       
+        //
     }
 
     /**
@@ -24,14 +23,12 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-        //  $current_date = Carbon::now()->toDateTimeString();
-       $person = Person::findOrFail($id);
-    //    return $current_date;
-       return view('pages.person-transaction',[
+         //  $current_date = Carbon::now()->toDateTimeString(); 
+
+       return view('pages.transaction-expense',[
            'title' => 'transaction',
-           'person' => $person
        ]);
     }
 
@@ -41,35 +38,35 @@ class TransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
     public function store(Request $request)
     {
-        $data=$request->all();
+       $data=$request->all();
         $data['date_transaction'] = Carbon::now()->toDateTimeString();
-       
-        Transaction::create($data);
+        // return $data;
+        Expense::create($data);
+        return redirect()->route('history');
+        // Transaction::create($data);
 
-        return redirect()->route('person');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Transaction  $transaction
+     * @param  \App\Models\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function show(Transaction $transaction)
+    public function show(Expense $expense)
     {
-        
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Transaction  $transaction
+     * @param  \App\Models\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function edit(Transaction $transaction)
+    public function edit(Expense $expense)
     {
         //
     }
@@ -78,10 +75,10 @@ class TransactionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Transaction  $transaction
+     * @param  \App\Models\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(Request $request, Expense $expense)
     {
         //
     }
@@ -89,10 +86,10 @@ class TransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Transaction  $transaction
+     * @param  \App\Models\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaction $transaction)
+    public function destroy(Expense $expense)
     {
         //
     }

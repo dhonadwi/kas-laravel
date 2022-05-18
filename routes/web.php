@@ -26,10 +26,10 @@ Route::post('/person', 'PersonController@store')->name('person-store');
 
 Route::get('/history', 'HistoryController@index')->name('history');
 Route::get('/person/transaction/{id}', 'TransactionController@create')->name('person-transaction');
-Route::get('/expense', 'TransactionController@create_expense')->name('transaction-expense');
-Route::post('/expense', 'TransactionController@store_expense')->name('transaction-expense-store');
 Route::post('/person/transaction', 'TransactionController@store')->name('person-transaction-store');
 
+Route::get('/expense', 'ExpenseController@create')->name('transaction-expense');
+Route::post('/expense', 'ExpenseController@store')->name('transaction-expense-store');
 
 // Route::get('/buku', 'BookController@index')->name('buku');
 // Route::delete('/buku', 'BookController@remove')->name('hapus-buku');

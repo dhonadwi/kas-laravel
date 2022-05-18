@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Expense;
 use App\Models\History;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -17,11 +18,17 @@ class HistoryController extends Controller
     {
         $history = Transaction::with(['person'])->get();
         $nominal = Transaction::sum('nominal');
-        // return $nominal;
+        $expense = Expense::all();
+        $nom_expense = Expense::sum('nominal');
+        $saldo = $nominal - $nom_expense;
+        // return [$history,$nominal, $expense,$nom_expense, $saldo];
         return view('pages.history',[
             'title' => 'history',
             'history' => $history,
-            'total' => $nominal
+            'total' => $nominal,
+            'expense' => $expense,
+            'total_expense' => $nom_expense,
+            'saldo' => $saldo
         ]);
     }
 
