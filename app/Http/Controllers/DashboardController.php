@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cluster;
+use App\Models\Expense;
+use App\Models\Person;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,8 +17,17 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $pemasukan = Transaction::sum('nominal');
+        $pengeluaran = Expense::sum('nominal');
+        $saldo = $pemasukan - $pengeluaran;
+        $penghuni = Person::count();
+        $cluster = Cluster::count();
+        // return [$penghuni,$cluster, $saldo];
         return view('pages.dashboard',[
-            'title' => 'dashboard'
+            'title' => 'dashboard',
+            'penghuni' => $penghuni,
+            'cluster' => $cluster,
+            'saldo' => $saldo
         ]);
     }
 

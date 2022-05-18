@@ -17,15 +17,17 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Data Penghuni</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
-                                        </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $penghuni }}</div>
+                                            </div>
+                                            <a href="{{ route('person') }}">
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                         </div>
+                                    </a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            </div>
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -35,11 +37,13 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Data Cluster</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $cluster }}</div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-book fa-2x text-gray-300"></i>
-                                        </div>
+                                        <a href="{{ route("cluster") }}">
+                                            <div class="col-auto">
+                                                <i class="fas fa-book fa-2x text-gray-300"></i>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -53,14 +57,14 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">History
                                             </div>
-                                            <div class="row no-gutters align-items-center">
-                                               
-                                               
+                                            <div class="row no-gutters align-items-center">                                               
                                             </div>
                                         </div>
+                                        <a href="{{ route('history') }}">
                                         <div class="col-auto">
                                             <i class="fas fa-history fa-2x text-gray-300"></i>
                                         </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -74,11 +78,13 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Saldo</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18.000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">@currency($saldo)</div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
+                                        <a href="{{ route('history') }}">
+                                            <div class="col-auto">
+                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
