@@ -41,6 +41,7 @@
                     <thead>
                         <tr>
                             <th>Nama Lengkap</th>
+                            <th>Cluster</th>
                             <th>Tanggal Bayar</th>
                             <th>Nominal</th>
                             <th>Keterangan</th>
@@ -50,7 +51,8 @@
                    @foreach ($history as $h)
                       <tr>
                         <td>{{ $h->person->name }}</td>
-                        <td>{{ $h->date_transaction }}</td>
+                        <td>{{ $h->person->cluster->name }}</td>
+                        <td>{{ \Carbon\Carbon::parse($h->date_transaction)->format('j-M-Y H:m:s') }}</td>
                         <td>@currency($h->nominal)</td>
                         <td>{{ $h->description }}</td>
                       </tr>            
@@ -72,7 +74,7 @@
                 <table class="table table-bordered" id="dataTableExpense" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Tanggal Bayar</th>
+                            <th>Tanggal</th>
                             <th>Nominal</th>
                             <th>Keterangan</th>
                         </tr>
@@ -80,7 +82,8 @@
                 <tbody>
                    @foreach ($expense as $e)
                       <tr>
-                        <td>{{ $e->date_transaction }}</td>
+                        {{-- <td>{{ \Carbon\Carbon::parse($e->date_transaction)->format('j F, Y') }}</td> --}}
+                        <td>{{ \Carbon\Carbon::parse($e->date_transaction)->format('j-M-Y') }}</td>
                         <td>@currency($e->nominal)</td>
                         <td>{{ $e->description }}</td>
                       </tr>            

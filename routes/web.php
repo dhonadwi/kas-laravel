@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'DashboardController@index')->middleware(['auth']);
+Route::middleware(['auth'])->group(function() {
+    Route::get('/', 'DashboardController@index')->middleware(['auth']);
+    Route::get('/history', 'HistoryController@index')->name('history');
+});
 
-Route::middleware(['auth'])
+Route::middleware(['auth','admin'])
     ->prefix('admin')->group(function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
     
@@ -29,7 +32,7 @@ Route::middleware(['auth'])
     Route::get('/person/{id}', 'PersonController@show')->name('person-edit');
     Route::post('/person', 'PersonController@store')->name('person-store');
     
-    Route::get('/history', 'HistoryController@index')->name('history');
+    // Route::get('/history', 'HistoryController@index')->name('history');
     Route::get('/person/transaction/{id}', 'TransactionController@create')->name('person-transaction');
     Route::post('/person/transaction', 'TransactionController@store')->name('person-transaction-store');
     
@@ -39,5 +42,5 @@ Route::middleware(['auth'])
 });
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 

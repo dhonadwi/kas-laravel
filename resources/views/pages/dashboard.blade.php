@@ -5,10 +5,15 @@
 @section('content')
     <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                        @if($verif == null)
+                            <div class="alert alert-danger">
+                                <ul>
+                                        <li> Please Verify your Email </li>
+                                </ul>
+                            </div>
+                        @endif
                     <!-- Content Row -->
                     <div class="row">
-
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">

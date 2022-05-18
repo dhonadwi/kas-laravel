@@ -7,6 +7,7 @@ use App\Models\Expense;
 use App\Models\Person;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -22,12 +23,14 @@ class DashboardController extends Controller
         $saldo = $pemasukan - $pengeluaran;
         $penghuni = Person::count();
         $cluster = Cluster::count();
-        // return [$penghuni,$cluster, $saldo];
+        $verif = Auth::user()->email_verified_at;
+        // return [$penghuni,$cluster, $saldo, $verif];
         return view('pages.dashboard',[
             'title' => 'dashboard',
             'penghuni' => $penghuni,
             'cluster' => $cluster,
-            'saldo' => $saldo
+            'saldo' => $saldo,
+            'verif' => $verif
         ]);
     }
 
