@@ -17,6 +17,7 @@
                     <i class="fas fa-clipboard-list"></i>
                     <span>Transaksi</span></a>
             </li> --}}
+            @if (Auth::user()->roles == 'ADMIN')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
@@ -26,11 +27,12 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Transaksi</h6>
-                        <a class="collapse-item" href="/expense">Pengeluaran</a>
+                        <a class="collapse-item" href="{{ route('transaction-expense') }}">Pengeluaran</a>
                         <a class="collapse-item" href="#">Pemasukan</a>
                     </div>
                 </div>
             </li>
+                @endif
             <li class="nav-item {{ $title==='history' ? ' active' :'' }}">
                 <a class="nav-link" href="{{ route('history') }}">
                     <i class="fas fa-history"></i>
@@ -41,6 +43,7 @@
         <hr class="sidebar-divider">
 
         <!-- Heading -->
+        @if (Auth::user()->roles == 'ADMIN')
         <div class="sidebar-heading">
             Admin
         </div>
@@ -55,7 +58,7 @@
                     <span>Data Cluster</span></a>
             </li>
             <li class="nav-item {{ $title==='book' ?' active' :'' }}">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-user-edit"></i>
                     <span>Data User</span></a>
             </li>
@@ -63,6 +66,8 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
+            
+        @endif
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
