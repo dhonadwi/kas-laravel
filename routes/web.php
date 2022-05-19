@@ -39,6 +39,8 @@ Route::middleware(['auth','admin'])
     Route::get('/expense', 'ExpenseController@create')->name('transaction-expense');
     Route::post('/expense', 'ExpenseController@store')->name('transaction-expense-store');
     Route::get('/user', 'UserController@index')->name('user');
+    Route::get('/user/create', 'UserController@create')->name('user-create');
+    Route::post('/user/create', 'UserController@store')->name('user-store');
     
 });
 
