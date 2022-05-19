@@ -104,6 +104,17 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user['no_hp'] = $request->no_hp;
         $user['no_rumah'] = $request->no_rumah;
+        $user['password'] = $request->password;
+        return $user;
+        $user->save();
+        return redirect()->route('dashboard')->with('message','Data berhasil diubah');
+    }
+
+    public function update_pass(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user['password'] = bcrypt($request->password);
+        // return $user;
         $user->save();
         return redirect()->route('dashboard')->with('message','Data berhasil diubah');
     }

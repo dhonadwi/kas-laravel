@@ -22,6 +22,7 @@ Route::middleware(['auth','verified'])->group(function() {
     Route::get('/history', 'HistoryController@index')->name('history');
     Route::get('/user/setting', 'UserController@setting')->name('user-setting');
     Route::put('/user/setting/{id}', 'UserController@update')->name('user-update');
+    Route::put('/user/setting/pass/{id}', 'UserController@update_pass')->name('user-update-pass');
 });
 
 Route::middleware(['auth','admin','verified'])
