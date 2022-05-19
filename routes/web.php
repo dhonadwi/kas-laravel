@@ -19,7 +19,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/history', 'HistoryController@index')->name('history');
 });
 
-Route::middleware(['auth','admin'])
+Route::middleware(['auth','admin','verified'])
     ->prefix('admin')->group(function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
     

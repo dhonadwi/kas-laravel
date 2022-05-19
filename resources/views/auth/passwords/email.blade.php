@@ -38,6 +38,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
+                                <a href="/login" class="btn btn-success">Kembali</a>
                             </div>
                         </div>
                     </form>

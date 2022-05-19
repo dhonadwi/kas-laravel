@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Notifications\RegiterEmailNotification;
 
 class UserController extends Controller
 {
@@ -44,9 +45,13 @@ class UserController extends Controller
     {
         $data = $request->all();
         $pass = Str::random(8);
-        $data['pass'] = $pass;
         $data['password'] = bcrypt($pass);
-        return $data;
+        
+        $user = User::create($data);
+        $data['pass'] = $pass;
+
+        $user->notify(new RegiterEmailNotification($data));
+        return redirect()->route('user')->with('success','Data berhasil ditambahkan');
     }
 
     /**
