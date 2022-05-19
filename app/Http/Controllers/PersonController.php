@@ -16,7 +16,15 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $person = Person::with(['cluster'])->get();
+        $person = Person::with(['transaction','cluster'])->get();
+
+        foreach ($person as $p ) {
+            foreach($p->transaction as $t) {
+                $p['total'] += $t->nominal ;
+            }
+        };
+
+        // return $person;
         return view('pages.person',[
             'title' => 'person',
             'person' => $person

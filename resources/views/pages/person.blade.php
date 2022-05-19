@@ -27,20 +27,20 @@
                 <table class="table table-bordered" id="dataTablePerson" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>ID Penghuni</th>
                             <th>Nama Lengkap</th>
                             <th>Cluster</th>
                             <th>No Rumah
+                            <th>Total Bayar</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                 <tbody>
                     @foreach ($person as $p)
                     <tr>
-                        <td>{{ $p->id }}</td>
                         <td>{{ $p->name }}</td>
                         <td>{{ $p->cluster->name }}</td>
                         <td>{{ $p->no_rumah }}</td>
+                        <td>@currency($p->total)</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
