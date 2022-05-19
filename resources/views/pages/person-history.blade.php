@@ -38,7 +38,8 @@
                             <td>{{ $person->no_rumah }}</td>
                         </tr>
                         <tr>
-
+                            <th>No Hanphone</th>
+                            <td>{{ $person->no_hp }}</td>
                         </tr>
                         <th>Transaksi</th>
                         <td>

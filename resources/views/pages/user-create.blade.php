@@ -43,6 +43,17 @@
       </div>
       </div>
     <div class="form-group">
+      <label for="cluster" class="col-md-4 col-form-label text-md-end">{{ __('Cluster') }}</label>
+
+      <div class="col-md-12">
+          <select name="cluster_id" class="form-control">
+              @foreach ($cluster as $c)
+                  <option value="{{ $c->id }}">{{ $c->name }}</option>
+              @endforeach
+          </select>
+      </div>
+      </div>
+    <div class="form-group">
         <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Hak Akses') }}</label>
         <div class="col-md-12">
         <select name="roles" class="form-control">

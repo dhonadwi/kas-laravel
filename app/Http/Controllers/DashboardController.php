@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cluster;
 use App\Models\Expense;
-use App\Models\Person;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +21,7 @@ class DashboardController extends Controller
         $pemasukan = Transaction::sum('nominal');
         $pengeluaran = Expense::sum('nominal');
         $saldo = $pemasukan - $pengeluaran;
-        $penghuni = Person::count();
+        $penghuni = User::count();
         $cluster = Cluster::count();
         $verif = Auth::user()->email_verified_at;
         // return [$penghuni,$cluster, $saldo, $verif];

@@ -15,7 +15,7 @@ class Transaction extends Model
         'id'
     ];
 
-    public function person() {
-        return $this->belongsTo(Person::class)->with('cluster');
+    public function user() {
+        return $this->belongsTo(User::class)->with('cluster');
     }
 }

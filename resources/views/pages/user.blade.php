@@ -17,6 +17,11 @@
             </ul>
         </div>
     @endif
+    @if(session()->has('message'))
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+    @endif
 <a href="{{ route('user-create') }}" class="btn btn-success">Tambah</a>
     <div class="card shadow mb-4 mt-2">
         <div class="card-header py-3">

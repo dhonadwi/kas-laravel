@@ -17,7 +17,7 @@
             </ul>
         </div>
     @endif
-<a href="{{ route('person-add') }}" class="btn btn-success">Tambah</a>
+{{-- <a href="{{ route('person-add') }}" class="btn btn-success">Tambah</a> --}}
     <div class="card shadow mb-4 mt-2">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Penghuni</h6>
@@ -48,7 +48,7 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="{{ route('person-transaction',$p->id) }}">Transaksi</a>
-                                    <a class="dropdown-item" href="{{ route('person-edit', $p->id) }}">History</a>
+                                    <a class="dropdown-item" href="{{ route('person-history', $p->id) }}">History</a>
                                 </div>
                             </div>
                         </td>

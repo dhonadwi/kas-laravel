@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cluster;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Notifications\RegiterEmailNotification;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -30,8 +32,10 @@ class UserController extends Controller
      */
     public function create()
     {
+        $cluster = Cluster::all();
         return view('pages.user-create',[
-            'title' => 'user'
+            'title' => 'user',
+            'cluster' => $cluster
         ]);
     }
 
@@ -51,7 +55,7 @@ class UserController extends Controller
         $data['pass'] = $pass;
 
         $user->notify(new RegiterEmailNotification($data));
-        return redirect()->route('user')->with('success','Data berhasil ditambahkan');
+        return redirect()->route('user')->with('message','Data User berhasil ditambahkan');
     }
 
     /**
@@ -60,9 +64,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $person = User::with(['transaction','cluster'])->get();
+
+        foreach ($person as $p ) {
+            foreach($p->transaction as $t) {
+                $p['total'] += $t->nominal ;
+            }
+        };
+
+        // return $person;
+        return view('pages.person',[
+            'title' => 'person',
+            'person' => $person
+        ]);
     }
 
     /**
@@ -85,7 +101,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user['no_hp'] = $request->no_hp;
+        $user['no_rumah'] = $request->no_rumah;
+        $user->save();
+        return redirect()->route('dashboard')->with('message','Data berhasil diubah');
     }
 
     /**
@@ -97,5 +117,25 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function history($id)
+    {
+         $person = User::with(['transaction','cluster'])->findOrFail($id);
+    //    return $person;
+       return view('pages.person-history',[
+           'title' => 'person',
+           'person' => $person
+       ]);
+    }
+
+    public function setting()
+    {
+        $user = User::with(['transaction','cluster'])->findOrFail(Auth::user()->id);
+        // return $user;
+        return view('pages.user-setting',[
+            'title' => 'user',
+            'user' => $user
+        ]);
     }
 }

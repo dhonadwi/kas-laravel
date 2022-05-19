@@ -19,7 +19,7 @@
         <div class="form-group">
             <label for="idBuku">Nama Lengkap</label>
             <input type="text" class="form-control" disabled value="{{ $person->name }}">
-            <input type="text" class="form-control" name="person_id" hidden value="{{ $person->id }}">
+            <input type="text" class="form-control" name="user_id" hidden value="{{ $person->id }}">
         </div>
         <div class="form-group">
             <label for="idBuku">Nominal</label>

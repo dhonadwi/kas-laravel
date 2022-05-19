@@ -16,7 +16,7 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $history = Transaction::with(['person'])->get();
+        $history = Transaction::with(['user'])->get();
         $nominal = Transaction::sum('nominal');
         $expense = Expense::all();
         $nom_expense = Expense::sum('nominal');

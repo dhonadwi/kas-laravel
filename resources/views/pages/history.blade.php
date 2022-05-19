@@ -50,8 +50,8 @@
                 <tbody>
                    @foreach ($history as $h)
                       <tr>
-                        <td>{{ $h->person->name }}</td>
-                        <td>{{ $h->person->cluster->name }}</td>
+                        <td>{{ $h->user->name }}</td>
+                        <td>{{ $h->user->cluster->name }}</td>
                         <td>{{ \Carbon\Carbon::parse($h->date_transaction)->format('j-M-Y H:m:s') }}</td>
                         <td>@currency($h->nominal)</td>
                         <td>{{ $h->description }}</td>

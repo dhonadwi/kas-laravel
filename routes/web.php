@@ -15,24 +15,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth'])->group(function() {
-    Route::get('/', 'DashboardController@index')->middleware(['auth']);
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+});
+
+Route::middleware(['auth','verified'])->group(function() {
     Route::get('/history', 'HistoryController@index')->name('history');
+    Route::get('/user/setting', 'UserController@setting')->name('user-setting');
+    Route::put('/user/setting/{id}', 'UserController@update')->name('user-update');
 });
 
 Route::middleware(['auth','admin','verified'])
     ->prefix('admin')->group(function () {
-    Route::get('/', 'DashboardController@index')->name('dashboard');
+    // Route::get('/', 'DashboardController@index')->name('dashboard');
     
     Route::get('/cluster', 'ClusterController@index')->name('cluster');
     Route::get('/cluster-add', 'ClusterController@create')->name('cluster-add');
     Route::post('/cluster','ClusterController@store')->name('cluster-store');
     
-    Route::get('/person', 'PersonController@index')->name('person');
-    Route::get('/person-add', 'PersonController@create')->name('person-add');
-    Route::get('/person/{id}', 'PersonController@show')->name('person-edit');
-    Route::post('/person', 'PersonController@store')->name('person-store');
+    Route::get('/person', 'UserController@show')->name('person');
+    Route::get('/person-add', 'UserController@create')->name('person-add');
+    Route::get('/person/{id}', 'UserController@history')->name('person-history');
+    Route::post('/person', 'UserController@store')->name('person-store');
     
-    // Route::get('/history', 'HistoryController@index')->name('history');
     Route::get('/person/transaction/{id}', 'TransactionController@create')->name('person-transaction');
     Route::post('/person/transaction', 'TransactionController@store')->name('person-transaction-store');
     

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Person;
 use App\Models\Transaction;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class TransactionController extends Controller
     public function create($id)
     {
         //  $current_date = Carbon::now()->toDateTimeString();
-       $person = Person::findOrFail($id);
+       $person = User::findOrFail($id);
     //    return $current_date;
        return view('pages.person-transaction',[
            'title' => 'transaction',
@@ -46,7 +47,7 @@ class TransactionController extends Controller
     {
         $data=$request->all();
         $data['date_transaction'] = Carbon::now()->toDateTimeString();
-       
+        
         Transaction::create($data);
 
         return redirect()->route('person');
