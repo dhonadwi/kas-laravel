@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Notifications\RegiterEmailNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisterSuccess;
 
 class UserController extends Controller
 {
@@ -54,7 +56,10 @@ class UserController extends Controller
         $user = User::create($data);
         $data['pass'] = $pass;
 
-        $user->notify(new RegiterEmailNotification($data));
+        // kirim email dari bwa
+        Mail::to($user->email)->send(new RegisterSuccess($data));
+        //bikin email dari google
+        // $user->notify(new RegiterEmailNotification($data)); 
         return redirect()->route('user')->with('message','Data User berhasil ditambahkan');
     }
 
