@@ -116,7 +116,7 @@ class UserController extends Controller
         $user['password'] = bcrypt($request->password);
         // return $user;
         $user->save();
-        return redirect()->route('dashboard')->with('message','Data berhasil diubah');
+        return redirect()->route('dashboard')->with('message','Password berhasil diubah');
     }
 
     /**

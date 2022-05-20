@@ -62,7 +62,7 @@
                         <input type="password" class="form-control" id="pass2" required>
                     </div>
                     
-                        <button type="submit" class="btn btn-success" id="btnSubmit">Submit</button>
+                        <button type="submit" class="btn btn-success" id="btnSubmit" disabled>Submit</button>
                         <a href="{{ route('dashboard') }}" class="btn btn-primary">Kembali</a>
                 </form>
             </div>

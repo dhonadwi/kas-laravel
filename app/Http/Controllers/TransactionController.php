@@ -50,7 +50,7 @@ class TransactionController extends Controller
         
         Transaction::create($data);
 
-        return redirect()->route('person');
+        return redirect()->route('dashboard')->with('message','Data Transaction berhasil ditambahkan');
     }
 
     /**

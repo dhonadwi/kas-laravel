@@ -33,6 +33,11 @@
                 </div>
             </li>
                 @endif
+            <li class="nav-item {{ $title==='pembayaran' ? ' active' :'' }}">
+                <a class="nav-link" href="{{ route('person-history',Auth::user()->id) }}">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span>Pembayaran</span></a>
+            </li>
             <li class="nav-item {{ $title==='history' ? ' active' :'' }}">
                 <a class="nav-link" href="{{ route('history') }}">
                     <i class="fas fa-history"></i>

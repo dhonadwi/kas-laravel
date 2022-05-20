@@ -20,9 +20,14 @@ Route::middleware(['auth'])->group(function() {
 
 Route::middleware(['auth','verified'])->group(function() {
     Route::get('/history', 'HistoryController@index')->name('history');
+
     Route::get('/user/setting', 'UserController@setting')->name('user-setting');
     Route::put('/user/setting/{id}', 'UserController@update')->name('user-update');
     Route::put('/user/setting/pass/{id}', 'UserController@update_pass')->name('user-update-pass');
+    
+    Route::get('/person/{id}', 'UserController@history')->name('person-history');
+    Route::get('/person/transaction/{id}', 'TransactionController@create')->name('person-transaction');
+    Route::post('/person/transaction', 'TransactionController@store')->name('person-transaction-store');
 });
 
 Route::middleware(['auth','admin','verified'])
@@ -35,11 +40,11 @@ Route::middleware(['auth','admin','verified'])
     
     Route::get('/person', 'UserController@show')->name('person');
     Route::get('/person-add', 'UserController@create')->name('person-add');
-    Route::get('/person/{id}', 'UserController@history')->name('person-history');
+    // Route::get('/person/{id}', 'UserController@history')->name('person-history');
     Route::post('/person', 'UserController@store')->name('person-store');
     
-    Route::get('/person/transaction/{id}', 'TransactionController@create')->name('person-transaction');
-    Route::post('/person/transaction', 'TransactionController@store')->name('person-transaction-store');
+    // Route::get('/person/transaction/{id}', 'TransactionController@create')->name('person-transaction');
+    // Route::post('/person/transaction', 'TransactionController@store')->name('person-transaction-store');
     
     Route::get('/expense', 'ExpenseController@create')->name('transaction-expense');
     Route::post('/expense', 'ExpenseController@store')->name('transaction-expense-store');
