@@ -28,6 +28,10 @@ Route::middleware(['auth','verified'])->group(function() {
     Route::get('/person/{id}', 'UserController@history')->name('person-history');
     Route::get('/person/transaction/{id}', 'TransactionController@create')->name('person-transaction');
     Route::post('/person/transaction', 'TransactionController@store')->name('person-transaction-store');
+
+    Route::post('/checkout', 'CheckoutController@process')->name('checkout');
+    // Route::post('/repay', 'CheckoutController@repay')->name('repay');
+    // Route::post('/checkout/callback', 'CheckoutController@callback')->name('midtrans-callback');
 });
 
 Route::middleware(['auth','admin','verified'])

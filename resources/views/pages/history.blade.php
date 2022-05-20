@@ -45,6 +45,7 @@
                             <th>Tanggal Bayar</th>
                             <th>Nominal</th>
                             <th>Keterangan</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                 <tbody>
@@ -55,6 +56,7 @@
                         <td>{{ \Carbon\Carbon::parse($h->date_transaction)->format('j-M-Y H:m:s') }}</td>
                         <td>@currency($h->nominal)</td>
                         <td>{{ $h->description }}</td>
+                        <td>{{ $h->status }}</td>
                       </tr>            
                    @endforeach                   
                 </tbody>

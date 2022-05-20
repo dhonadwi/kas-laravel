@@ -48,6 +48,7 @@
                                 <th>Tanggal</th>
                                 <th>Nominal</th>
                                 <th>Keterangan</th>
+                                <th>Status</th>
                                 </thead>
                                 <tbody>
                                 @foreach ($person->transaction as $t)
@@ -55,6 +56,15 @@
                                     <td>{{ $t->date_transaction}}</td>
                                     <td>@currency($t->nominal)</td>
                                     <td>{{ $t->description}}</td>
+                                    <td>{{ $t->status}}
+                                       {{-- @if($t->status == 'pending')
+                                       <form action="{{ route('repay') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $t->id }}">
+                                       <button class='btn btn-success btn-sm'>Bayar</button>
+                                       </form>
+                                       @endif --}}
+                                    </td>
                                 </tr>
                                     @endforeach
                                 </tbody>

@@ -47,6 +47,7 @@ class TransactionController extends Controller
     {
         $data=$request->all();
         $data['date_transaction'] = Carbon::now()->toDateTimeString();
+        $data['status'] = 'success';
         
         Transaction::create($data);
 

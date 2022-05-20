@@ -18,4 +18,8 @@ class Transaction extends Model
     public function user() {
         return $this->belongsTo(User::class)->with('cluster');
     }
+
+    public function details() {
+        return $this->belongsTo(TransactionDetail::class);
+    }
 }

@@ -14,7 +14,7 @@
         </div>
     @endif
     <h3>Transaksi</h3>
-    <form method="POST" action="{{ route('person-transaction-store') }}">
+    <form method="POST" action="{{ Auth::user()->roles == 'ADMIN' ? route('person-transaction-store') : route('checkout')}}">
     @csrf
         <div class="form-group">
             <label for="idBuku">Nama Lengkap</label>
