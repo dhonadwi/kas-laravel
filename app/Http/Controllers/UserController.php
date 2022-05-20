@@ -57,6 +57,7 @@ class UserController extends Controller
         $data['pass'] = $pass;
 
         // kirim email dari bwa
+        // return $data;
         Mail::to($user->email)->send(new RegisterSuccess($data));
         //bikin email dari google
         // $user->notify(new RegiterEmailNotification($data)); 

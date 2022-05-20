@@ -99,7 +99,7 @@
                           <tbody>
                             <tr>
                               <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:20px;line-height:1;text-align:center;color:#512d0b;"><strong>Hai {{FirstName}}!</strong></div>
+                                <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:20px;line-height:1;text-align:center;color:#512d0b;"><strong>Hai {{$data['name']}}!</strong></div>
                               </td>
                             </tr>
                             <tr>
@@ -109,7 +109,7 @@
                             </tr>
                             <tr>
                               <td align="center" style="font-size:0px;padding:0 25px;padding-top:20px;word-break:break-word;">
-                                <div style="font-family:Arial, sans-serif;font-size:25px;font-weight:bold;line-height:35px;text-align:center;color:#489BDA;">Password<br></div>
+                                <div style="font-family:Arial, sans-serif;font-size:25px;font-weight:bold;line-height:35px;text-align:center;color:#489BDA;">{{ $data['pass'] }}<br></div>
                               </td>
                             </tr>
                             <tr>
