@@ -76,7 +76,10 @@ class UserController extends Controller
 
         foreach ($person as $p ) {
             foreach($p->transaction as $t) {
-                $p['total'] += $t->nominal ;
+                if($t->status == 'success')
+                {
+                    $p['total'] += $t->nominal ;
+                }
             }
         };
 
@@ -105,20 +108,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail($request->id);
         $user['no_hp'] = $request->no_hp;
         $user['no_rumah'] = $request->no_rumah;
-        $user['password'] = $request->password;
-        return $user;
+
         $user->save();
         return redirect()->route('dashboard')->with('message','Data berhasil diubah');
     }
 
-    public function update_pass(Request $request, $id)
+    public function update_pass(Request $request)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail($request->id);
         $user['password'] = bcrypt($request->password);
         // return $user;
         $user->save();

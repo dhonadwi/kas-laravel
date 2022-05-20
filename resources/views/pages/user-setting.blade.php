@@ -25,9 +25,10 @@
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
       <div class="container">
         <div class="card shadow p-5 mb-4 mt-2">
-            <form method="POST" action="{{ route('user-update', $user->id) }}">
+            <form method="POST" action="{{ route('user-update') }}">
                 @method('PUT')
                 @csrf
+                <input type="hidden" name="id" value="{{ $user->id }}">
                 <div class="form-group">
                     <label>Nama Lengkap</label>
                     <input type="text" class="form-control" name="name" value="{{old('name', $user->name)}}" disabled>
@@ -50,9 +51,10 @@
     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
       <div class="container">
             <div class="card shadow p-5 mb-4 mt-2">
-                <form method="POST" action="{{ route('user-update-pass', $user->id) }}">
+                <form method="POST" action="{{ route('user-update-pass') }}">
                     @method('PUT')
                     @csrf
+                    <input type="hidden" name="id" value="{{ $user->id }}">
                     <div class="form-group">
                         <label>New Password</label>
                         <input type="password" class="form-control" name="password" id="pass1" required>

@@ -5,13 +5,6 @@
 @section('content')
     <!-- Begin Page Content -->
                 <div class="container-fluid">
-                        @if($verif == null)
-                            <div class="alert alert-danger">
-                                <ul>
-                                        <li> Please Verify your Email </li>
-                                </ul>
-                            </div>
-                        @endif
                         @if(session()->has('message'))
                         <div class="alert alert-success">
                             {{ session()->get('message') }}

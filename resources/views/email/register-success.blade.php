@@ -116,7 +116,7 @@
                               <td align="center" vertical-align="middle" style="font-size:0px;padding:20px 0 0 0;word-break:break-word;">
                                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
                                   <tr>
-                                    <td align="center" bgcolor="#646FD4" role="presentation" style="border:none;border-radius:3px;cursor:auto;mso-padding-alt:10px 25px;background:#646FD4;" valign="middle">
+                                    <td align="center" bgcolor="#646FD4" role="presentation" style="border:none;border-radius:3px;cursor:auto;mso-padding-alt:10px 25px;background:#3BACB6;" valign="middle">
                                       <a href="https://odonslank" style="display: inline-block; background: #646FD4; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; line-height: 120%; margin: 0; text-transform: none; padding: 10px 25px; mso-padding-alt: 0px; border-radius: 3px; text-decoration: none; color: inherit;" target="_blank"> BUKU KAS ASI </a>
                                     </td>
                                   </tr>

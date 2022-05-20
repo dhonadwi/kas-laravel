@@ -18,7 +18,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $pemasukan = Transaction::sum('nominal');
+        $pemasukan = Transaction::where('status','success')
+            ->sum('nominal');
         $pengeluaran = Expense::sum('nominal');
         $saldo = $pemasukan - $pengeluaran;
         $penghuni = User::count();

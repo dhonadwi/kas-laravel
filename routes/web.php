@@ -16,14 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/', 'DashboardController@index')->name('dashboard');
-});
-
-Route::middleware(['auth','verified'])->group(function() {
     Route::get('/history', 'HistoryController@index')->name('history');
 
     Route::get('/user/setting', 'UserController@setting')->name('user-setting');
-    Route::put('/user/setting/{id}', 'UserController@update')->name('user-update');
-    Route::put('/user/setting/pass/{id}', 'UserController@update_pass')->name('user-update-pass');
+    Route::put('/user/setting', 'UserController@update')->name('user-update');
+    Route::put('/user/setting/pass', 'UserController@update_pass')->name('user-update-pass');
     
     Route::get('/person/{id}', 'UserController@history')->name('person-history');
     Route::get('/person/transaction/{id}', 'TransactionController@create')->name('person-transaction');

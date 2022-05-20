@@ -16,7 +16,9 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $history = Transaction::with(['user'])->get();
+        $history = Transaction::with(['user'])
+        ->where('status','success')
+        ->get();
         $nominal = Transaction::where('status', 'success')->sum('nominal');
         $expense = Expense::all();
         $nom_expense = Expense::sum('nominal');
