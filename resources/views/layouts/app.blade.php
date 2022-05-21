@@ -1,61 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KAS ASI | @yield('title')</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" type="image/png" href="https://img.icons8.com/external-justicon-lineal-color-justicon/64/000000/external-book-office-stationery-justicon-lineal-color-justicon.png">
-
-    <title>KAS ASI | @yield('title') </title>
-    @stack('prepend-style')
-    @include('includes.style')
-    @stack('addon-style')
-
+ {{-- style --}}
+ @stack('prepend-style')
+ @include('includes.style')
+ @stack('addon-style')
 </head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
 
-<body id="page-top">
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="{{ url('/dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
+  </div>
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+  <!-- Navbar -->
+  @include('includes.navbar')
+  <!-- /.navbar -->
 
-        <!-- Sidebar -->
-        @include('includes.sidebar')
-        <!-- End of Sidebar -->
+  <!-- Main Sidebar Container -->
+  @include('includes.sidebar')
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+  @yield('content')
+  </div>
+  <!-- /.content-wrapper -->
 
-            <!-- Main Content -->
-            <div id="content">
+  @include('includes.footer')
 
-                <!-- Topbar -->
-                @include('includes.navbar')
-                <!-- End of Topbar -->
-
-                @yield('content')
-
-            </div>
-            <!-- End of Main Content -->
-
-           {{-- Footer --}}
-            @include('includes.footer')
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -76,10 +61,8 @@
             </div>
         </div>
     </div>
-    @stack('prepend-script')
-    @include('includes.script')
-    @stack('addon-script')
-
+@stack('prepend-script')
+@include('includes.script')
+@stack('addon-script')
 </body>
-
 </html>
