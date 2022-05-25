@@ -16,9 +16,9 @@
 
 </head>
 
-<body class="bg-gradient-gray">
+<body class="">
 
-    <div class="container pb-10">
+    <div class="content-wrapper">
 
         <!-- Outer Row -->
         @yield('content')

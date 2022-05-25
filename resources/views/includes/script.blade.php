@@ -4,17 +4,17 @@
 <script src="{{ url('/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $.widget.bridge('uibutton', $.ui.button)
+  // $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{ url('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- ChartJS -->
-<script src="{{ url('/plugins/chart.js/Chart.min.js') }}"></script>
+{{-- <script src="{{ url('/plugins/chart.js/Chart.min.js') }}"></script> --}}
 <!-- Sparkline -->
-<script src="{{ url('/plugins/sparklines/sparkline.js') }}"></script>
+{{-- <script src="{{ url('/plugins/sparklines/sparkline.js') }}"></script> --}}
 <!-- JQVMap -->
-{{-- <script src="{{ url('/plugins/jqvmap/jquery.vmap.min.js') }}"></script> --}}
-{{-- <script src="{{ url('/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script> --}}
+{{-- <script src="{{ url('/plugins/jqvmap/jquery.vmap.min.js') }}"></script>  --}}
+ {{-- <script src="{{ url('/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script> --}}
 <!-- jQuery Knob Chart -->
 {{-- <script src="{{ url('/plugins/jquery-knob/jquery.knob.min.js') }}"></script> --}}
 <!-- daterangepicker -->

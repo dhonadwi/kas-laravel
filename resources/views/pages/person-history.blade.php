@@ -41,41 +41,41 @@
                             <th>No Hanphone</th>
                             <td>{{ $person->no_hp }}</td>
                         </tr>
-                        <th>Transaksi</th>
-                        <td>
-                            <table class="table table-bordered" id="dataTablePerson">
-                                <thead>
-                                <th>Tanggal</th>
-                                <th>Nominal</th>
-                                <th>Keterangan</th>
-                                <th>Status</th>
-                                </thead>
-                                <tbody>
-                                @foreach ($person->transaction as $t)
-                                <tr>
-                                    <td>{{ $t->date_transaction}}</td>
-                                    <td>@currency($t->nominal)</td>
-                                    <td>{{ $t->description}}</td>
-                                    <td>{{ $t->status}}
-                                       @if($t->status == 'pending')
-                                        <div class="dropdown">
-                                            <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                               <i class="fas fa-pen"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#">Transaksi</a>
-                                                <a class="dropdown-item" href="#">History</a>
-                                            </div>
-                                        </div>
-                                       @endif
-                                    </td>
-                                </tr>
-                                    @endforeach
-                                </tbody>
-                          </table>
-                        </td>
                     </tbody>
                 </table>
+                <h4>Transaksi</h4>
+                        <table class="table table-bordered" id="dataTablePerson">
+                            <thead>
+                            <th>Tanggal</th>
+                            <th>Nominal</th>
+                            <th>Keterangan</th>
+                            <th>Status</th>
+                            </thead>
+                            <tbody>
+                            @foreach ($person->transaction as $t)
+                            <tr>
+                                <td>{{ $t->date_transaction}}</td>
+                                <td>@currency($t->nominal)</td>
+                                <td>{{ $t->description}}</td>
+                                <td>{{ $t->status}}
+                                   @if($t->status == 'pending')
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                           <i class="fas fa-pen"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Transaksi</a>
+                                            <a class="dropdown-item" href="#">History</a>
+                                        </div>
+                                    </div>
+                                   @endif
+                                </td>
+                            </tr>
+                                @endforeach
+                            </tbody>
+                      </table>
+                    </td>
+                    </tr>
             </div>
             <a class="btn btn-success" href="{{ route('person-transaction',$person->id) }}">Transaksi</a>
             <a href="{{ route('person') }}" class="btn btn-primary">Kembali</a>

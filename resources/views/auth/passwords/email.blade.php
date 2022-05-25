@@ -35,10 +35,10 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary mt-2">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
-                                <a href="/login" class="btn btn-success">Kembali</a>
+                                <a href="/login" class="btn btn-success mt-2">Kembali</a>
                             </div>
                         </div>
                     </form>
