@@ -52,6 +52,8 @@ Route::middleware(['auth','admin','verified'])
     Route::get('/user', 'UserController@index')->name('user');
     Route::get('/user/create', 'UserController@create')->name('user-create');
     Route::post('/user/create', 'UserController@store')->name('user-store');
+
+    Route::put('/history','HistoryController@update')->name('update-status');
     
 });
 

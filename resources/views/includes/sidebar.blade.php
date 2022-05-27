@@ -34,6 +34,14 @@
                   <p>Pembayaran</p>
                 </a>
               </li>
+              @if (Auth::user()->roles == 'ADMIN')
+              <li class="nav-item">
+                <a href="{{ route('transaction-expense') }}" class="nav-link">
+                  <i class="fas fa-money-check-alt"></i>
+                  <p>Pengeluaran</p>
+                </a>
+              </li>
+              @endif
               <li class="nav-item">
                 <a href="{{ route('history') }}" class="nav-link">
                  <i class="fas fa-file-invoice-dollar"></i>

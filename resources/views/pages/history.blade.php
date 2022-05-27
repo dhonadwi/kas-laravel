@@ -17,6 +17,11 @@
             </ul>
         </div>
     @endif
+    @if (session()->has('message'))
+       <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div> 
+    @endif
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item" role="presentation">
     <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Pemasukan</a>
@@ -53,10 +58,27 @@
                       <tr>
                         <td>{{ $h->user->name }}</td>
                         <td>{{ $h->user->cluster->name }}</td>
-                        <td>{{ \Carbon\Carbon::parse($h->date_transaction)->format('j-M-Y H:m:s') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($h->created_at)->format('j-M-Y H:m:s') }}</td>
                         <td>@currency($h->nominal)</td>
                         <td>{{ $h->description }}</td>
-                        <td>{{ $h->status }}</td>
+                        <td>{{ $h->status }} 
+                            @if ($h->status == 'pending') 
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Aksi
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <form action="{{ route('update-status') }}" method="POST">
+                                            @method('PUT')
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $h->id }}">
+                                            <button class="dropdown-item" type="submit" name="button" value="cancel">Cancel</button>
+                                            <button class="dropdown-item" type="submit" name="button" value="success">Success</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endif    
+                        </td>
                       </tr>            
                    @endforeach                   
                 </tbody>
@@ -85,7 +107,7 @@
                    @foreach ($expense as $e)
                       <tr>
                         {{-- <td>{{ \Carbon\Carbon::parse($e->date_transaction)->format('j F, Y') }}</td> --}}
-                        <td>{{ \Carbon\Carbon::parse($e->date_transaction)->format('j-M-Y') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($e->created_at)->format('j-M-Y') }}</td>
                         <td>@currency($e->nominal)</td>
                         <td>{{ $e->description }}</td>
                       </tr>            

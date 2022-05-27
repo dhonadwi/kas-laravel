@@ -6,6 +6,7 @@ use App\Models\Expense;
 use App\Models\History;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HistoryController extends Controller
 {
@@ -16,9 +17,13 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $history = Transaction::with(['user'])
-        ->where('status','success')
-        ->get();
+        if(Auth::user()->roles == 'ADMIN') {
+            $history = Transaction::all();
+        }else {
+            $history = Transaction::with(['user'])
+            ->where('status','success')
+            ->get();
+        }
         $nominal = Transaction::where('status', 'success')->sum('nominal');
         $expense = Expense::all();
         $nom_expense = Expense::sum('nominal');
@@ -34,7 +39,7 @@ class HistoryController extends Controller
         ]);
     }
 
-    /**
+     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -86,7 +91,10 @@ class HistoryController extends Controller
      */
     public function update(Request $request, History $history)
     {
-        //
+        $transaction = Transaction::findOrFail($request->id);
+        $transaction['status'] = $request->button;
+        $transaction->save();
+        return redirect('history')->with('message','Data Berhasil di Update');
     }
 
     /**

@@ -18,7 +18,7 @@
 
 <body class="">
 
-    <div class="content-wrapper">
+    <div class="">
 
         <!-- Outer Row -->
         @yield('content')

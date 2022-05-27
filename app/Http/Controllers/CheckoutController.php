@@ -55,8 +55,8 @@ class CheckoutController extends Controller
             // Get Snap Payment Page URL
             $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
             
-            $transaction['status'] = $paymentUrl;
-            $transaction->save();
+            // $transaction['status'] = $paymentUrl;
+            // $transaction->save();
             // Redirect to Snap Payment Page
             // header('Location: ' . $paymentUrl);
             return redirect($paymentUrl);
