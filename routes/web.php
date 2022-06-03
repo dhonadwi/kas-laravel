@@ -28,11 +28,10 @@ Route::middleware(['auth'])->group(function() {
 
     Route::post('/checkout', 'CheckoutController@process')->name('checkout');
     // Route::post('/repay', 'CheckoutController@repay')->name('repay');
-    // Route::post('/checkout/callback', 'CheckoutController@callback')->name('midtrans-callback');
 });
 
 Route::middleware(['auth','admin','verified'])
-    ->prefix('admin')->group(function () {
+->prefix('admin')->group(function () {
     // Route::get('/', 'DashboardController@index')->name('dashboard');
     
     Route::get('/cluster', 'ClusterController@index')->name('cluster');
@@ -52,7 +51,7 @@ Route::middleware(['auth','admin','verified'])
     Route::get('/user', 'UserController@index')->name('user');
     Route::get('/user/create', 'UserController@create')->name('user-create');
     Route::post('/user/create', 'UserController@store')->name('user-store');
-
+    
     Route::put('/history','HistoryController@update')->name('update-status');
     
 });
@@ -60,3 +59,8 @@ Route::middleware(['auth','admin','verified'])
 
 Auth::routes(['verify' => true]);
 
+Route::get('midtrans/finish','MidtransController@finishRedirect');
+Route::get('midtrans/unfinish','MidtransController@finishRedirect');
+Route::get('midtrans/error','MidtransController@finishRedirect');
+
+Route::post('/midtrans/callback', 'CheckoutController@callback')->name('midtrans-callback');

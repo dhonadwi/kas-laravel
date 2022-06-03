@@ -23,7 +23,7 @@ class CheckoutController extends Controller
         $data=$request->all();
         $data['date_transaction'] = Carbon::now()->toDateTimeString();
         $order_id = 'ASI-'. Str::random(5);
-        $data['description'] = $request->description .' ('.$order_id.')';
+        $data['code'] = $order_id;
         // return $data;
         $transaction = Transaction::create($data);
 
@@ -46,7 +46,7 @@ class CheckoutController extends Controller
                 'email'         => Auth::user()->email,
             ],
             'enabled_payments' => [
-                'gopay' , 'shopeepay','bank_transfer'
+                'gopay' , 'shopeepay','bank_transfer','bca_va'
             ],
             'vtweb' => []
         ];
@@ -83,5 +83,43 @@ class CheckoutController extends Controller
         $type = $notification->payment_type;
         $fraud = $notification->fraud_status;
         $order_id = $notification->order_id;
+
+        $id = explode('-',$order_id);
+
+        $transaction = Transaction::findOrFail($id[2]);
+
+        if($status == 'capture') {
+            if($type == 'credit_card') {
+                if($fraud == 'challenge') {
+                    $transaction->status = 'pending';
+                }
+                else {
+                    $transaction->status = 'success';
+                }
+            }
+
+        }
+        else if($status == 'settlement') {
+            $transaction->status = 'success';
+        }
+        else if($status == 'pending') {
+            $transaction->status = 'pending';
+        }
+        else if($status == 'deny') {
+            $transaction->status = 'cancelled';
+        }
+        else if($status == 'expire') {
+            $transaction->status = 'cancelled';
+        }
+        else if($status == 'cancel') {
+            $transaction->status = 'cancelled';
+        }
+      
+
+        $transaction->save();
+
+
+
+
     }
 }
