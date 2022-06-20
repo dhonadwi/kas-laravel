@@ -20,6 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->string('description');
             $table->timestamp('date_transaction');
             $table->string('status')->default('pending');
+            $table->string('code');
             $table->softDeletes();
             $table->timestamps();
         });
